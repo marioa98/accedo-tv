@@ -1,12 +1,15 @@
 import { BrowserRouter } from 'react-router-dom';
+import { MediaContextProvider } from './config/context/MediaContext';
 
 import Routes from './config/routes';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+    <MediaContextProvider>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </MediaContextProvider>
   );
 }
 
