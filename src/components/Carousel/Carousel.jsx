@@ -52,14 +52,10 @@ const Carousel = ({ items, options: customOptions, title }) => {
     <>
       <Header>{title}</Header>
       <Slider {...({ ...options, ...customOptions })}>
-        {items?.map(({ name, image, summary }) => (
-          <>
-            <MediaCard
-              image={image}
-              summary={summary}
-              name={name}
-            />
-          </>
+        {items?.map(({id, ...item}) => (
+          <div key={id}>
+            <MediaCard id={id} {...item} />
+          </div>
         ))}
       </Slider>
     </>
