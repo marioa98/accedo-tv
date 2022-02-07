@@ -40,10 +40,12 @@ const PlayerMetadata = ({ media }) => {
 
   useEffect(() => {
     document.addEventListener('keydown', toggleContainer)
-    document.addEventListener('mousemove', toggleContainer);    
+    document.addEventListener('mousemove', toggleContainer);
+    document.addEventListener('touchstart', toggleContainer);
     return () => {
       document.removeEventListener('keydown', toggleContainer)
       document.removeEventListener('mousemove', toggleContainer);
+      document.removeEventListener('touchstart', toggleContainer);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
