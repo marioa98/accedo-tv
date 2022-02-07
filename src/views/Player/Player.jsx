@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
@@ -13,6 +13,7 @@ const Player = () => {
   const [media, setMedia] = useState();
   const [isPrepared, setPrepared] = useState(false);
   const { videoId } = useParams();
+  const navigate = useNavigate();
   const { mediaById } = useContext(MediaContext);
 
   useEffect(() => {
@@ -79,6 +80,21 @@ const Player = () => {
       videoRef.current?.play();
       playerRef.current?.enterFullWindow?.()
     }
+  }, [isPrepared])
+
+  const onEnd = () => navigate(-1);
+
+  useEffect(() => {
+    if (!playerRef.current) {
+      return;
+    }
+
+    playerRef.current?.on?.('ended', onEnd);
+    
+    return () => {
+      playerRef.current?.off?.('ended', onEnd);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPrepared])
 
   return (
