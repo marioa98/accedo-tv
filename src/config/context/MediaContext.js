@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -20,12 +20,18 @@ const MediaContextProvider = ({ children }) => {
     setMedias(data)
   };
 
+  const mediaById = useCallback((mediaId) => {
+    const intMediaId = parseInt(mediaId);
+    return medias?.find?.(({ id }) => intMediaId === id)
+  }, [medias]);
+
   useEffect(() => {
     getMedias();
   }, []);
 
   const value = {
-    medias
+    medias,
+    mediaById
   }
 
   return (
