@@ -1,10 +1,21 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import MetadataContainer from '../../views/Player/theme/MetadataContainer';
+import colors from '../../theme/colors';
 
 const CONTROLS_TIMEOUT = 3000;
 
-const PlayerMetadata = ({ media }) => {
+const ExitButton = styled.div`
+  position: absolute;
+  color: ${colors.white};
+  font-size: 40px;
+  right: 40px;
+  top: 40px;
+  cursor: pointer;
+`
+
+const PlayerMetadata = ({ media, onClose }) => {
   const containerRef = useRef();
   const timeout = useRef();
 
@@ -39,7 +50,7 @@ const PlayerMetadata = ({ media }) => {
   const metadata = getMetadata()
 
   useEffect(() => {
-    document.addEventListener('keydown', toggleContainer)
+    document.addEventListener('keydown', toggleContainer);
     document.addEventListener('mousemove', toggleContainer);
     document.addEventListener('touchstart', toggleContainer);
     return () => {
@@ -54,6 +65,7 @@ const PlayerMetadata = ({ media }) => {
     <MetadataContainer ref={containerRef}>
       <h1>{media?.name}</h1>
       <p>{metadata}</p>
+      <ExitButton onClick={onClose}>&#9747;</ExitButton>
     </MetadataContainer>
   )
 };
@@ -67,7 +79,8 @@ PlayerMetadata.propTypes = {
     image: PropTypes.string,
     mediaUrl: PropTypes.string,
     summary: PropTypes.string
-  })
+  }),
+  onClose: PropTypes.func
 }
 
 export default PlayerMetadata;

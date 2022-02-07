@@ -99,7 +99,7 @@ const Player = () => {
 
   return (
     <div data-vjs-player="">
-      <PlayerMetadata media={media} />
+      <PlayerMetadata media={media} onClose={onEnd} />
       <video ref={videoRef} className="video-js vjs-big-play-centered" />
     </div>
   )
