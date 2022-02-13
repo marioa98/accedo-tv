@@ -2,51 +2,53 @@ import React from 'react';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import MediaCard from '../MediaCard/MediaCard';
-
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-
-const options = {
-  dots: true,
-  infinite: false,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  arrows: true,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        initialSlide: 2
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-    }
-  ]
-};
+import viewports from '../../config/viewports';
+import Arrow from './Arrow/Arrow';
 
 const Header = styled.h1`
   font-size: 36px;
   margin-left: 45px;
 `;
 
+const baseSettings = {
+  dots: true,
+  infinite: false,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  arrows: true,
+}
+
 const Carousel = ({ items, options: customOptions, title }) => {
+  const options = {
+    ...baseSettings,
+    responsive: [
+      {
+        breakpoint: viewports.large,
+        settings: {
+          ...baseSettings,
+          slidesToShow: 3
+        }
+      },
+      {
+        breakpoint: viewports.medium,
+        settings: {
+          ...baseSettings,
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: viewports.small,
+        settings: {
+          ...baseSettings,
+          slidesToShow: 1
+        }
+      }
+    ],
+    nextArrow: <Arrow direction="next" />,
+    prevArrow: <Arrow direction="prev" />
+  };
 
   return (
     <>
