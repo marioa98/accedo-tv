@@ -7,13 +7,15 @@ import viewports from "../../../config/viewports";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import './arrow.scss';
+import useViewport from '../../../hooks/useVieport';
 
 const Arrow = ({ currentSlide, slideCount, direction, onClick }) => {
   const [inView, setView] = useState();
   const [slidesInView, setSlidesInView] = useState();
 
-  const slidesInViewHandler = () => {
-    const { innerWidth } = window;
+  const { width } = useViewport();
+
+  const slidesInViewHandler = (innerWidth) => {
     const { large, medium, small } = viewports;
 
     if (innerWidth > large) {
@@ -38,13 +40,8 @@ const Arrow = ({ currentSlide, slideCount, direction, onClick }) => {
   }, [direction, currentSlide, slideCount, slidesInView])
 
   useEffect(() => {
-    slidesInViewHandler();
-    window.addEventListener('resize', slidesInViewHandler);
-
-    return () => {
-      window.removeEventListener('resize', slidesInViewHandler);
-    }
-  }, [])
+    slidesInViewHandler(width);
+  }, [width])
 
   return (
     <button
