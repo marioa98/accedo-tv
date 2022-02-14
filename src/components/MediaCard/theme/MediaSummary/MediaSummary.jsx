@@ -8,7 +8,7 @@ const MediaSummary = styled.div`
   height: 340px;
   overflow: hidden;
   padding: 10px 15px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(10,163,216, 0.9);
   margin-top: 20px;
 `
 export default MediaSummary;
