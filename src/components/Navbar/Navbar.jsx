@@ -41,6 +41,7 @@ const Navbar = () => {
                 transform: `rotate(${isOptionsOpen ? '-' : ''}90deg)`,
                 marginRight: '10vw'
               }}
+              className="alert transparent"
             >
               &#10095;
             </MenuButton>
