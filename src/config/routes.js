@@ -1,11 +1,13 @@
 import { Routes as Router, Route } from 'react-router-dom';
 import { Home, Player } from '../views';
+import constants from './constants';
+const { paths } = constants;
 
 const Routes = () => (
   <Router>
-    <Route path="/">
+    <Route path={paths.root}>
       <Route index element={<Home />} />
-      <Route path="videos">
+      <Route path={paths.video}>
         <Route path=":videoId" element={<Player />}/>
       </Route>
     </Route>

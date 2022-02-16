@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { MediaContainer, MediaImage, MediaSummary, MediaTitle } from './theme';
+import constants from '../../config/constants';
 
 const MediaCard = ({ id, image, name, summary = '' }) => {
   const navigate = useNavigate();
@@ -14,7 +15,9 @@ const MediaCard = ({ id, image, name, summary = '' }) => {
     setSummaryVisibility(false)
   };
 
-  const goToPlayer = () => navigate(`videos/${id}`);
+  const goToContent = () => {
+    navigate(`${constants.paths.video}/${id}`);
+  }
 
   return (
     <MediaContainer
@@ -22,7 +25,7 @@ const MediaCard = ({ id, image, name, summary = '' }) => {
       onMouseLeave={onMouseLeave}
       onTouchMove={onMouseEnter}
       onTouchEnd={onMouseLeave}
-      onClick={goToPlayer}
+      onClick={goToContent}
     >
       <MediaImage
         image={image}
