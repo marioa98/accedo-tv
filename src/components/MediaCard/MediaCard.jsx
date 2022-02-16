@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { MediaContainer, MediaImage, MediaSummary, MediaTitle } from './theme';
+import useVideoHistory from '../../hooks/useVideoHistory';
 import constants from '../../config/constants';
 
 const MediaCard = ({ id, image, name, summary = '' }) => {
   const navigate = useNavigate();
   const [isSummaryVisible, setSummaryVisibility] = React.useState(false);
+  const videoHistory = useVideoHistory();
 
   const onMouseEnter = () => {
     setSummaryVisibility(true);
@@ -16,7 +18,8 @@ const MediaCard = ({ id, image, name, summary = '' }) => {
   };
 
   const goToContent = () => {
-    navigate(`${constants.paths.video}/${id}`);
+    videoHistory.save(id);
+    navigate(`/${constants.paths.video}/${id}`);
   }
 
   return (

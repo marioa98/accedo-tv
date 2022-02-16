@@ -1,4 +1,5 @@
 import React from 'react';
+import constants from '../../config/constants';
 import useViewport from '../../hooks/useVieport';
 import Logo from '../../static/accedoLogo.png'
 import {
@@ -12,6 +13,7 @@ import {
   NavLogo
 } from './theme';
 
+const { paths } = constants;
 
 const Navbar = () => {
   const [isOptionsOpen, setOptions] = React.useState(false);
@@ -45,7 +47,7 @@ const Navbar = () => {
           )}
           <Menu open={isOptionsOpen}>
             <MenuItem>
-              <MenuLink to="#">
+              <MenuLink to={paths.videoHistory}>
                 <MenuButton>History</MenuButton>
               </MenuLink>
             </MenuItem>

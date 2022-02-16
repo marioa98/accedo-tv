@@ -10,7 +10,7 @@ const MediaContext = React.createContext();
  * avoid multiple requests.
  */
 const MediaContextProvider = ({ children }) => {
-  const [medias, setMedias] = useState();
+  const [medias, setMedias] = useState([]);
 
   const getMedias = async () => {
     const { data } = await axios.get('accedoTest.json', {

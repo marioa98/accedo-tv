@@ -1,7 +1,11 @@
 const constants = {
   paths: {
     root: '/',
-    video: 'videos'
+    video: 'videos',
+    videoHistory: 'video-history'
+  },
+  storage: {
+    videoHistory: 'browser-video-history'
   }
 }
 
