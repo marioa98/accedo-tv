@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from '../../components/Buttons/Button';
 import DeleteButton from '../../components/Buttons/DeleteButton';
 
 import Carousel from '../../components/Carousel/Carousel';
+import Popup from '../../components/Popup/Popup';
 import constants from '../../config/constants';
 import useVideoHistory from '../../hooks/useVideoHistory';
 
@@ -50,16 +51,23 @@ const NoItemsContainer = styled.div`
 `
 
 const History = () => {
-  const { historyItems } = useVideoHistory();
+  const [isPopupOpen, setPopupVisibility] = useState(false);
+  const { historyItems, removeAll } = useVideoHistory();
   const navigate = useNavigate()
 
   return (
     <>
+      <Popup
+        isOpen={isPopupOpen}
+        message="Do you really want to delete all your history"
+        onCancel={() => setPopupVisibility(false)}
+        onAccept={removeAll}
+      />
       {historyItems?.length ? (
         <>
           <Carousel items={historyItems} title="Recently watched" />
           <Div>
-            <DeleteButton>
+            <DeleteButton onClick={() => setPopupVisibility(true)}>
               Delete History
             </DeleteButton>
           </Div>

@@ -28,11 +28,16 @@ const useVideoHistory = () => {
     setHistoryItems(history);
   }, [medias]);
 
+  const removeAll = () => {
+    add(storage.videoHistory, JSON.stringify([]));
+    getHistory();
+  }
+
   useEffect(() => {
     getHistory();
   }, [getHistory, medias])
 
-  return { save, historyItems };
+  return { save, historyItems, removeAll };
 };
 
 export default useVideoHistory;
