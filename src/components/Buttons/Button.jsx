@@ -9,7 +9,9 @@ const {
   darkRed,
   white,
   pink,
-  lightPink
+  lightPink,
+  blue,
+  lightBlue
 } = colors;
 
 const Button = styled.button`
@@ -58,6 +60,19 @@ const Button = styled.button`
 
     &:hover{
       background-color: ${lightPink};
+    }
+  }
+
+  &.secondary {
+    background-color: ${blue};
+    color: ${white};
+
+    &.transparent {
+      color: ${blue};
+    }
+
+    &:hover{
+      background-color: ${lightBlue};
     }
   }
 
