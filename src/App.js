@@ -4,6 +4,7 @@ import { MediaContextProvider } from './config/context/MediaContext';
 import Routes from './config/routes';
 import GlobalStyle from './theme/globalStyle';
 import Navbar from './components/Navbar/Navbar';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <GlobalStyle />
         <Navbar />
         <Routes />
+        <Footer />
       </BrowserRouter>
     </MediaContextProvider>
   );
