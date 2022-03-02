@@ -55,13 +55,18 @@ const History = () => {
   const { historyItems, removeAll } = useVideoHistory();
   const navigate = useNavigate()
 
+  const onAccept = () => {
+    removeAll();
+    setPopupVisibility(false);
+  }
+
   return (
     <>
       <Popup
         isOpen={isPopupOpen}
         message="Do you really want to delete all your history"
         onCancel={() => setPopupVisibility(false)}
-        onAccept={removeAll}
+        onAccept={onAccept}
       />
       {historyItems?.length ? (
         <>
