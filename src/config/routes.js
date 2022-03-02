@@ -1,10 +1,11 @@
 import { Routes as Router, Route } from 'react-router-dom';
-import { History, Home, Player } from '../views';
+import { History, Home, NotFound, Player } from '../views';
 import constants from './constants';
 const { paths } = constants;
 
 const Routes = () => (
   <Router>
+    <Route path='*' element={<NotFound />} />
     <Route path={paths.root}>
       <Route index element={<Home />} />
       <Route path={paths.video}>

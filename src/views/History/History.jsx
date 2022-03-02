@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Button from '../../components/Buttons/Button';
 import DeleteButton from '../../components/Buttons/DeleteButton';
 
 import Carousel from '../../components/Carousel/Carousel';
+import NoContent from '../../components/NoContent/NoContent';
 import Popup from '../../components/Popup/Popup';
 import constants from '../../config/constants';
 import useVideoHistory from '../../hooks/useVideoHistory';
@@ -22,31 +22,6 @@ const Div = styled.div`
 
   @media only screen and (max-width:600px) {
     margin-left: 30vw;
-  }
-`
-
-const NoItemsContainer = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-
-  div {
-    position: relative;
-    text-align: center;
-    top: 30vh;
-  }
-
-  h1 {
-    font-size: 32px;
-  }
-
-  p {
-    font-size: 16px;
-  }
-
-  button {
-    font-size: 16px;
   }
 `
 
@@ -78,15 +53,12 @@ const History = () => {
           </Div>
         </>
       ) : (
-        <NoItemsContainer>
-          <div>
-            <h1>Ups. No items in your history</h1>
-            <p>Enjoy something from our catalog</p>
-            <Button className="primary" onClick={() => navigate(paths.root)}>
-              Return to Home
-            </Button>
-          </div>
-        </NoItemsContainer>
+        <NoContent
+          title='Ups. No items in your history'
+          message='Enjoy something from our catalog'
+          buttonLabel='Return to Home'
+          onClick={() => navigate(paths.root)}
+        />
       )}
     </>
   )
