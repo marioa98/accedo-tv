@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import colors from '../../theme/colors';
 import githubLogo from '../../static/github-icon.png'
