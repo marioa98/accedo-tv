@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import colors from "../../theme/colors";
 import Button from "../Navbar/theme/MenuButton/MenuButton";
 
 const DeleteButton = ({ children, ...props }) => (
